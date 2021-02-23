@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section id="listing_img_slider">
+  <div class="text-center">
+      <br>
+      <img src="{% static 'image/'%}{{bike1.img1}}" alt="Responsive image" width="450" height="250">
+  </div>
+
+</section>
+<!--Listing-detail-->
+<section class="listing-detail">
+  <div class="container">
+    <div class="listing_detail_head row">
+      <div class="col-md-9">
+        <h2>{{bike1.Brand}} , {{bike1.vehicletitle}}</h2>
+      </div>
+      <div class="col-md-3">
+        <div class="price_info">
+            <p>NRs <strong> {{bike1.priceperday}} </strong> </p>Per Day
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="main_features">
+          <ul>
+
+            <li> <i class="fa fa-motorcycle" aria-hidden="true"></i>
+              <h5>{{bike1.bikenum}}</h5>
+              <p>Number</p>
+            </li>
+            <li> <i class="fa fa-cogs" aria-hidden="true"></i>
+              <h5>{{bike1.engine}} CC</h5>
+              <p>Engine</p>
+            </li>
+
+            <li> <i class="fa fa-user-plus" aria-hidden="true"></i>
+              <h5>{{user.username}}</h5>
+              <p>Owner</p>
+            </li>
+          </ul>
+        </div>
+        <div class="listing_more_info">
+          <div class="listing_detail_wrap">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs gray-bg" role="tablist">
+              <li role="presentation" class="active"><a href="#vehicle-overview " aria-controls="vehicle-overview" role="tab" data-toggle="tab">Vehicle Overview </a></li>
+
+
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <!-- vehicle-overview -->
+              <div role="tabpanel" class="tab-pane active" id="vehicle-overview">
+
+                <p>{{bike1.vehicalorcview}}</p>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="accessories">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Side-Bar-->
+      <aside class="col-md-3">
+        <div class="sidebar_widget">
+          <div class="widget_heading">
+            <h5><i class="fa fa-envelope" aria-hidden="true"></i>Book Now</h5>
+          </div>
+          <form method="post" action="/book">
+            {% csrf_token %}
+            <div class="form-group">
+              <input type="text" class="form-control" name="fromdate" placeholder="From Date(dd/mm/yyyy)" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="todate" placeholder="To Date(dd/mm/yyyy)" required>
+            </div>
+            <div class="form-group">
+              <textarea rows="4" class="form-control" name="message" placeholder="Message" required></textarea>
+            </div>
+              <div class="form-group">
+                {% if user.is_authenticated %}
+                <input type="submit" class="btn"  name="submit" value="Book Now">
+                {% else %}
+                <input type="submit" class="btn"  name="submit" value="Book Now" onclick="return confirm('You must login first.');">
+                {% endif %}
+              </div>
+          </form>
+        </div>
+      </aside>
+      <!--/Side-Bar-->
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

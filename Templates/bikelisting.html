@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+          <!-- Listing-->
+<section class="listing-page">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        {% for bikedata in bike %}
+        <div class="product-listing-m gray-bg">
+          <div class="product-listing-img"><img src="{% static 'image/'%}{{bikedata.img1}}" class="img-responsive" alt="Image" /> </a>
+          </div>
+          <div class="product-listing-content">
+            <h5><a href="bikedetail/{{bikedata.id}}">{{bikedata.vehicletitle}}</a></h5>
+            <p class="list-price">NRs <strong>{{bikedata.priceperday}}</strong> Per Day</p>
+            <ul>
+              <li><i class="fa fa-motorcycle" aria-hidden="true"> {{bikedata.Brand}}</i></li>
+              <li><i class="fa fa-cc" aria-hidden="true"></i>{{bikedata.engine}}</li>
+            </ul>
+            <a href="bikedetail/{{bikedata.id}}" class="btn">View Details <span class="angle_arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+          </div>
+        </div>
+      {% endfor %}
+         </div>
+    </div>
+  </div>
+</section>
+<!-- /Listing-->
+
+{% endblock %}

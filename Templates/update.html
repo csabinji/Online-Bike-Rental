@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="content-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Update details of {{bike1.Brand}} {{bike1.vehicletitle}} Bike</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong>Basic Info</strong></div>
+                            <div class="panel-body">
+                                <form method="post" class="form-horizontal" enctype="multipart/form-data"
+                                      action="/bike_update/{{bike1.id}}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Bike Title<span style="color:red">*</span></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="vehicletitle" class="form-control"
+                                                   value="{{bike1.vehicletitle}}" required>
+                                        </div>
+                                        <label class="col-sm-2 control-label">Brand<span
+                                                style="color:red">*</span></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="Brand" class="form-control" value="{{bike1.Brand}}"
+                                                   required>
+                                        </div>
+                                    </div>
+
+                                    <div class="hr-dashed"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Bike Details<span
+                                                style="color:red">*</span></label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" name="vehicalorcview" rows="3" required>{{bike1.vehicalorcview}}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Price Per Day(in NRs)<span
+                                                style="color:red">*</span></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="priceperday" class="form-control"
+                                                   value="{{bike1.priceperday}}" required>
+                                        </div>
+                                        <label class="col-sm-2 control-label">Engine<span
+                                                style="color:red">*</span></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="engine" class="form-control"
+                                                   value="{{bike1.engine}}" required placeholder="CC">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">Number<span
+                                                style="color:red">*</span></label>
+                                        <div class="col-sm-4">
+                                            <input type="text" name="bikenum" class="form-control"
+                                                   value="{{bike1.bikenum}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="hr-dashed"></div>
+
+                                    <hr>
+
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <h4><b>Change Image</b></h4>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <div class="col-sm-4"> Current Image
+                                            <img src="{% static 'image/'%}{{bike1.img1}}" class="rounded"
+                                                 alt="Responsive image" width="450" height="250">
+
+                                            Change Image<input type="file" name="img1">
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <button class="btn btn-default" type="reset">Cancel</button>
+                    <button class="btn btn-primary" name="submit" type="submit">Save changes</button>
+                </div>
+            </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br><br>
+
+{% endblock %}
